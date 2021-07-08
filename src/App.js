@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import CommunicationZone from './CommunicationZone';
 
 function App() {
-  const conversations = useSelector((state) => state.app.conversations)
+  const friends = useSelector((state) => state.app.friends)
   const dispatch = useDispatch();
   return (
     <div className="App">
       <div className="conversationListContainer">
-        {conversations.map(
+        {friends.map(
           (v, index) => (
             <div>
               <button onClick={() =>{
@@ -21,7 +21,7 @@ function App() {
                 }
               })}}
               >
-                {v}
+                {v.name}
               </button>
             </div>
           )
