@@ -1,11 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import './App.css';
 
 
 function ContactWindow() {
+  const currentFriend = useSelector(({app:{friends,currentDuckIndex,loading}}) =>{
+    if (loading){
+      return null
+    }
+    return friends[currentDuckIndex]
+  })
+
+  if (!currentFriend){
+    return <></> 
+  }
   return (
     <div className="headerWrapper">
-    <span className="contactName">Dr. Rubberduck</span>
+      <img style={{height:'100px'}} alt-text='' src={currentFriend.image}/>
+
+    <span className="contactName">
+    {currentFriend.name}
+    </span>
     </div>
   );
 }
