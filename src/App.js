@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
-import CommunicationZone from './CommunicationZone';
+import CommunicationZone from './components/CommunicationZone';
 
 function App() {
   const friends = useSelector((state) => state.app.friends)

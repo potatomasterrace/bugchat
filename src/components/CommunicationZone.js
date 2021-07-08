@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './CommunicationZone.css';
 import InputZone from './InputZone';
 import ChatZone from './ChatZone';
 import ContactWindow from './ContactWindow';

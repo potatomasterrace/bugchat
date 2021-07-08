@@ -1,6 +1,6 @@
 import React from 'react';
 import Snippet from './Snippet';
-import './App.css';
+import './ChatZone.css';
 
 export default function ChatZone(props) {
 
