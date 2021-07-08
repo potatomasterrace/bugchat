@@ -7,7 +7,7 @@ function App() {
   const loading = useSelector((state) => state.app.loading)
   const friends = useSelector((state) => state.app.friends)
   const dispatch = useDispatch();
-  setTimeout(fetch("http://localhost:4242/app_context")
+  setInterval(fetch("http://localhost:4242/app_context")
       .then(res => res.json())
       .then(resp=>dispatch({
         type: 'app/finishLoading',
@@ -16,7 +16,7 @@ function App() {
         }
       }))
       .catch(e=>alert(String(e))),'100'
-  )
+  ,1000)
   if(loading){
     return '';
   }
