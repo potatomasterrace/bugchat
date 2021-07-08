@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import { useSelector, useDispatch,useEffect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import CommunicationZone from './components/CommunicationZone';
 
 function App() {
   const loading = useSelector((state) => state.app.loading)
   const friends = useSelector((state) => state.app.friends)
+  const intervalCounter = useSelector((state) => state.app.intervalCounter)
   const dispatch = useDispatch();
-  setInterval(fetch("http://localhost:4242/app_context")
-      .then(res => res.json())
-      .then(resp=>dispatch({
+  useEffect(() => fetch("http://localhost:4242/app_context")
+    .then(res => res.json())
+    .then(resp => {
+      debugger
+      dispatch({
         type: 'app/finishLoading',
-        payload: {
-          resp
-        }
-      }))
-      .catch(e=>alert(String(e))),'100'
-  ,1000)
-  if(loading){
+        payload: { resp },
+
+      })
+      dispatch({
+        type: 'conversation/finishLoading',
+        payload: { resp },
+
+      })
+    }, [])
+    //.catch(e => alert(String(e))), '100'
+    , [intervalCounter])
+  if (loading) {
     return '';
   }
   return (
@@ -26,14 +34,15 @@ function App() {
         {friends.map(
           (v, index) => (
             <div>
-              <button onClick={() =>{
-                console.log(`switched to conversation`,index)
+              <button onClick={() => {
+                console.log(`switched to conversation`, index)
                 dispatch({
-                type: 'app/switchToConversation',
-                payload: {
-                  index
-                }
-              })}}
+                  type: 'app/switchToConversation',
+                  payload: {
+                    index
+                  }
+                })
+              }}
               >
                 {v.name}
               </button>
