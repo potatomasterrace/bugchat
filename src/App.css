@@ -44,8 +44,17 @@
 
 
 .mainContainer {
-  max-width: 500px;
+  max-width: 80%;
   margin-left: auto;
+  margin-right: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversationListContainer {
+  max-width: 20%;
+  margin-left: 0;
   margin-right: auto;
   align-items: center;
   display: flex;
