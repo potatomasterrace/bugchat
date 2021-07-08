@@ -1,4 +1,4 @@
-import { default as db } from './database';
+const db = require( './database');
 
 const rubberduck= {
     state:{

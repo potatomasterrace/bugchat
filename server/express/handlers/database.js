@@ -37,6 +37,4 @@ const db = {
     }
 };
 
-
-export const get_db = ()=>db
-export default db;
+module.exports = db;

@@ -1,5 +1,5 @@
-import {default as db} from './database';
+const db = require('./database');
 
 module.exports = function (req, res) {
-   return  { friends:db.friends, conversations:db.conversations };
+    return res.json({ friends: db.friends, conversations: db.conversations });
 };

@@ -8,7 +8,8 @@ function App() {
   const friends = useSelector((state) => state.app.friends)
   const intervalCounter = useSelector((state) => state.app.intervalCounter)
   const dispatch = useDispatch();
-  useEffect(() => fetch("http://localhost:4242/app_context")
+  useEffect(async() =>{
+    fetch("http://localhost:4242/app_context")
     .then(res => res.json())
     .then(resp => {
       debugger
@@ -24,7 +25,8 @@ function App() {
       })
     }, [])
     //.catch(e => alert(String(e))), '100'
-    , [intervalCounter])
+    
+  } , [intervalCounter])
   if (loading) {
     return '';
   }
