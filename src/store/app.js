@@ -4,24 +4,15 @@ const appSlice = createSlice(
     {
         name: 'app',
         initialState: {
-            friends: [
-                {
-                    name: 'Dr. Rubberduck',
-                    image: '/ducky.jpg',
-                },
-                {
-                    name: 'Donald Duck',
-                    image: '/og_duck.png',
-                },
-            ],
+            friends: [],
             currentDuckIndex: 0,
-            loading: false,
+            loading: true,
         },
         reducers: {
             switchToConversation(state, { payload: { index } }) {
                 return { ...state, currentDuckIndex: index }
             },
-            finishLoading(state, resp) {
+            finishLoading(state, {payload:{resp}}) {
                 return { ...state, ...resp, loading: false }
             }
         }
