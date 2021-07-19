@@ -8,18 +8,12 @@ function App() {
   const friends = useSelector((state) => state.app.friends)
   const intervalCounter = useSelector((state) => state.app.intervalCounter)
   const dispatch = useDispatch();
-  useEffect(async() =>{
+  useEffect(() =>{
     fetch("http://localhost:4242/app_context")
     .then(res => res.json())
     .then(resp => {
-      debugger
       dispatch({
         type: 'app/finishLoading',
-        payload: { resp },
-
-      })
-      dispatch({
-        type: 'conversation/finishLoading',
         payload: { resp },
 
       })
