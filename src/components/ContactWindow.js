@@ -11,6 +11,8 @@ function ContactWindow() {
     return friends[currentDuckIndex]
   })
 
+  console.log(currentFriend)
+  ///debugger
   if (!currentFriend){
     return <></> 
   }

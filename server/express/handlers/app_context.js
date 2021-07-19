@@ -1,5 +1,6 @@
 const db = require('./database');
+const {friends,conversations} =db;
 
 module.exports = function (req, res) {
-    return res.json({ friends: db.friends, conversations: db.conversations });
+    return res.json({ friends, conversations });
 };

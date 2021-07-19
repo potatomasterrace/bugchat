@@ -7,6 +7,7 @@ function App() {
   const loading = useSelector((state) => state.app.loading)
   const friends = useSelector((state) => state.app.friends)
   const intervalCounter = useSelector((state) => state.app.intervalCounter)
+  const currentDuckIndex = useSelector((state) => state.app.currentDuckIndex)
   const dispatch = useDispatch();
   useEffect(() =>{
     fetch("http://localhost:4242/app_context")
@@ -18,9 +19,9 @@ function App() {
 
       })
     }, [])
-    //.catch(e => alert(String(e))), '100'
     
   } , [intervalCounter])
+
   if (loading) {
     return '';
   }
@@ -47,7 +48,7 @@ function App() {
         )}
       </div>
       <div className="mainContainer">
-        <CommunicationZone />
+        <CommunicationZone currentDuckIndex={currentDuckIndex}/>
       </div>
     </div>
   );

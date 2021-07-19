@@ -5,7 +5,7 @@ const appSlice = createSlice(
         name: 'app',
         initialState: {
             friends: [],
-            currentDuckIndex: 0,
+            currentDuckIndex: -1,
             loading: true,
             intervalCounter:0,
         },
@@ -14,7 +14,7 @@ const appSlice = createSlice(
                 return { ...state, currentDuckIndex: index }
             },
             finishLoading(state, {payload:{resp}}) {
-                return { ...state, ...resp, loading: false,intervalCounter:state.intervalCounter+1 }
+                return { ...state, ...resp, loading: false,intervalCounter:state.intervalCounter}
             }
         }
     }
