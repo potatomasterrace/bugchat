@@ -4,17 +4,17 @@ import './ChatZone.css';
 
 export default function ChatZone(props) {
 
-  const {history} = props;  
+  const { history } = props;
 
   return (
-        <div className="innerShadow">
-        <div className="chatWrap">
+    <div className="innerShadow">
+      <div className="chatWrap">
         {
-            history.map((item, index) => 
-        
-        <Snippet key={index} index={index} item={item} />
-            )}
-        </div>
-        </div>
+          history.map(({ message, sent }, index) =>
+
+            <Snippet key={index} index={index} item={message} style={{ color: sent ? 'blue': 'green'}} />
+          )}
+      </div>
+    </div>
   );
 }

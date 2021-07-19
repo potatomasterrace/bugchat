@@ -3,6 +3,7 @@ const cors = require('cors');
 const httpErrors = require('http-errors');
 const pino = require('pino');
 const pinoHttp = require('pino-http');
+const bodyParser = require('body-parser');
 
 module.exports = function main(options, cb) {
   // Set default options
@@ -49,6 +50,7 @@ module.exports = function main(options, cb) {
   // app.use(/* ... */)
   app.use(pinoHttp({ logger }));
   app.use(cors());
+  app.use(bodyParser.json())
 
   // Register routes
   // @NOTE: require here because this ensures that even syntax errors

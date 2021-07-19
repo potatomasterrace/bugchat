@@ -1,11 +1,6 @@
 const db = require( './database');
 
 const rubberduck= {
-    state:{
-        disposable : '',
-        history : ["How can I help?"],
-        index:0,
-    },
     get_response: (message)=>{
         const answersBasic = ["can you elaborate?","and why do you believe that is so?","can you be more specific?","what would be your guess?","I need more details for this one"]; 
         const answersAdvanced = ["have you check the logs?","have you tried restarting?","what does the documentation say?", "Maybe its a typo"]
@@ -28,16 +23,15 @@ const rubberduck= {
 }
 
 const donald =  {
-    state:{
-        history : ["I'm an echo"],
-        index:1,
-    },
     get_response: (message)=>message,
     dialogueEngine:(message)=>{
       db.send_message(this.state.index,message)
       resp=get_response(this.state.index,message);
+      db.conversations[1] = [...db.conversations[1],{sent:true,msg:message}]
       if (resp){
-          setTimeout(()=>db.receive_message(this.state.index,resp),6000)
+          setTimeout(()=>{
+              db.conversations[1]= [...db.conversations[1],{sent:false,msg:message}]
+          },6000)
       }
     }
 }

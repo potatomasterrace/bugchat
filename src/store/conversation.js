@@ -8,10 +8,11 @@ const conversationSlice = createSlice(
              content: [
              ],
              loading:true,
+             intervalCounter:0,
          },
          reducers: {
             finishLoading(state,{payload:{resp}}){
-                return {...state,content:resp,loading:false}
+                return {...state,content:resp,intervalCounter:state.intervalCounter+1,loading:false}
             },
             updateConversationIdx(state,{payload:{currentConversationIdx}}){
                 return {...state,content:[],currentConversationIdx}

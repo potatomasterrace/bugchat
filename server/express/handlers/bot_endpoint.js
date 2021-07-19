@@ -1,13 +1,12 @@
-const bots = require('./bots');
+const db = require('./database');
 
 module.exports = function (req, res) {
     try {
         const idx = parseInt(req.params['idx']);
-        const  message = req.body;
-        //bots[idx].send_message(message)
+        const {message} = req.body;
+        db.send_message(idx,message)
         res.json({
-            idx:idx,
-            ok: message,
+            ok: true,
         });
     } catch (e) {
         res.json({

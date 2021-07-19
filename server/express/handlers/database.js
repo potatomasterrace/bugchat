@@ -30,10 +30,10 @@ const db = {
     friends,
     conversations,
     send_message: function (conversationIndex,message) {
-            this.conversations[conversationIndex].append({message,sent:true})
+        conversations[conversationIndex].push({message,sent:true})
     },
     receive_message: function(conversationIndex,message){
-        this.conversations[conversationIndex].push({message,sent:false})
+        conversations[conversationIndex].push({message,sent:false})
     }
 };
 
