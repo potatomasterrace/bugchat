@@ -1,10 +1,10 @@
-const db = require('./database');
+const bots = require('./bots');
 
 module.exports = function (req, res) {
     try {
         const idx = parseInt(req.params['idx']);
         const {message} = req.body;
-        db.send_message(idx,message)
+        bots[idx].dialogueEngine(message)
         res.json({
             ok: true,
         });
