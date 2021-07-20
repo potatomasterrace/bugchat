@@ -26,13 +26,20 @@ let conversations = [
         }
     ]
 ]
+
+// dbVersion is a value incremented to signal that a change has been made 
+const dbVersion = 1;
 const db = {
-    friends,
-    conversations,
-    send_message: (conversationIndex, message) => {
+    getFriends:()=>friends,
+    getConversations:()=>conversations,
+    getVersion: ()=> dbVersion,
+    present:()=>{friends,conversations,version:dbVersion},
+    sendMessage: (conversationIndex, message) => {
+        dbVersion++;
         conversations[conversationIndex].push({ message, sent: true })
     },
-    receive_message: (conversationIndex, message) => {
+    receiveMessage: (conversationIndex, message) => {
+        dbVersion++;
         conversations[conversationIndex].push({ message, sent: false })
     }
 };

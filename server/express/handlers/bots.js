@@ -7,31 +7,33 @@ const getRubberDuckResponse = (history) => {
     const lastSentMessage = history[0];
     const pickFromList = (list) => list[Math.floor(Math.random() * list.length)]
     if (history.length >= 4) {
-        return 'advanced';pickFromList(answersAdvanced);
+        return pickFromList(answersAdvanced);
     } else if (lastSentMessage.length <= 7) {
-        return 'adjust';pickFromList(answersAdjust);
+        return pickFromList(answersAdjust);
     } else if (history.length <= 3) {
-        return 'basic';pickFromList(answersBasic);
+        return pickFromList(answersBasic);
     }
-    return `Weird right ? the length some developpers would go to to obscure bugs of length 6 to the guy doing the assignement then not even have the decency to check the code. (ERROR_MSG=420)`;
+    return `Weird right ? the length some developpers would go to to obscure bugs of length 6 to the guy doing the assignement then not even have the decency to check the code. (ERROR_CODE=420)`;
 }
 
-const rubberduck = {
+const rubberduck = (index) => {
     dialogueEngine: (message) => {
-        db.send_message(0, message)
-        const resp = getRubberDuckResponse(db.conversations[0]);
+        db.sendMessage(index, message)
+        const resp = getRubberDuckResponse(db.conversations[index]);
         if (resp) {
-            setTimeout(() => db.receive_message(0, resp), 6000)
+            setTimeout(() => db.receiveMessage(index, resp), 6000)
         }
     }
 }
 
-const donald = {
+const donald = (index) => {
     dialogueEngine: (message) => {
-        db.send_message(1, message)
-        db.receive_message(1, message)
+        db.sendMessage(index, message)
+        db.receiveMessage(index, message)
     }
 }
-const bots = [rubberduck, donald]
+
+// create the bot instances respectful of their indexes
+const bots = [rubberduck, donald].map((v,i)=>v(i));
 
 module.exports = bots;
