@@ -10,7 +10,7 @@ export default function Snippet(props) {
   return (
     <div>
       <Paper className="snippetBox"
-      style={props.index % 2 === 0 ? {float: 'left', backgroundColor: '#6accc3'}: {float : 'right'}}>
+      style={props.isSent ? {float: 'left', backgroundColor: '#6accc3'}: {float : 'right'}}>
         <Typography component="p">
           {props.item}
         </Typography>
