@@ -12,7 +12,11 @@ export default function ChatZone(props) {
         {
           history.map(({ message, sent }, index) =>
 
-            <Snippet key={index} index={index} item={message} style={{ color: sent ? 'blue': 'green'}} />
+            <Snippet
+              key={index}
+              index={index}
+              item={message}
+              isSent={!sent} />
           )}
       </div>
     </div>
