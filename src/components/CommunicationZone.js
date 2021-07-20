@@ -8,13 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const CommunicationZone = ({ currentDuckIndex }) => {
     const dispatch = useDispatch();
-    const [loading, content, currentConversationIdx] = useSelector(({ conversation: { loading, content, currentConversationIdx } }) => [loading, content, currentConversationIdx]);
-    const debugElement = (
-        <div className="chatHost innerShadow">
-            {JSON.stringify(
-                loading, currentConversationIdx
-            )}
-        </div>)
+    const [loading, content, currentConversationIdx, intervalCounter] = useSelector(({ conversation: { loading, content, currentConversationIdx, intervalCounter } }) => [loading, content, currentConversationIdx, intervalCounter]);
 
     useEffect(() => {
         if (currentDuckIndex != -1 && currentDuckIndex != currentConversationIdx) {
@@ -36,7 +30,7 @@ const CommunicationZone = ({ currentDuckIndex }) => {
 
                     }))
         }
-    }, [loading, currentConversationIdx]);
+    }, [loading, currentConversationIdx, intervalCounter]);
     if (currentConversationIdx == currentDuckIndex && currentConversationIdx != -1) {
         return (
             <div className="chatHost innerShadow">
