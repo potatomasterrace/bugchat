@@ -12,28 +12,28 @@ let friends = [
 ]
 
 
-let conversations=[
+let conversations = [
     [
         {
             'sent': false,
-            'message':"something about something."
+            'message': "something about something."
         }
     ],
     [
         {
             'sent': false,
-            'message':"donalDuck in da House !"
+            'message': "donalDuck in da House, I echo stuff."
         }
     ]
 ]
 const db = {
     friends,
     conversations,
-    send_message: function (conversationIndex,message) {
-        conversations[conversationIndex].push({message,sent:true})
+    send_message: (conversationIndex, message) => {
+        conversations[conversationIndex].push({ message, sent: true })
     },
-    receive_message: function(conversationIndex,message){
-        conversations[conversationIndex].push({message,sent:false})
+    receive_message: (conversationIndex, message) => {
+        conversations[conversationIndex].push({ message, sent: false })
     }
 };
 
