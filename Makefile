@@ -1,4 +1,5 @@
 build:
+	yarn install
 	docker-compose up -d
 
 delete:
