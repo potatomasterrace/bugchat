@@ -12,7 +12,6 @@ function ContactWindow() {
   })
 
   console.log(currentFriend)
-  ///debugger
   if (!currentFriend){
     return <></> 
   }
