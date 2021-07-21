@@ -20,7 +20,7 @@ export default function ChatZone(props) {
         {
           props.isTyping ?
           <Snippet
-          item={`${props.duckName} is typing`}
+          item={`...`}
           isSent={true} 
           lighten={true}
           /> : 
