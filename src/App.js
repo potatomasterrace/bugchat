@@ -12,7 +12,7 @@ function App() {
   const currentDuckIndex = useSelector((state) => state.app.currentDuckIndex)
   const dispatch = useDispatch();
   useEffect(() => {
-    fetch(`http://localhost:4242/app_context/${dbVersion}`)
+    fetch(`/api/app_context/${dbVersion}`)
       .then(res => res.json())
       .then(resp => {
         dispatch({

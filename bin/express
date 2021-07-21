@@ -3,5 +3,4 @@
 // Pass configuration to application
 require('../server/express')({
   port: 4242,
-  host: 'localhost',
 });

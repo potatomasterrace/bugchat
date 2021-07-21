@@ -12,7 +12,7 @@ const CommunicationZone = ({ currentDuckIndex, isTyping,duckName }) => {
     useEffect(() => {
         // if evertyhing is loaded except conversation load convesation
 
-        fetch(`http://localhost:4242/conversation/${dbVersion}`)
+        fetch(`/api/conversation/${dbVersion}`)
             .then(res => res.json())
             .then(resp =>
                 dispatch({
@@ -36,7 +36,7 @@ const CommunicationZone = ({ currentDuckIndex, isTyping,duckName }) => {
                     isTyping={isTyping}
                 />
                 <InputZone handleSubmit={(message) => {
-                    fetch(`http://localhost:4242/conversation/${currentDuckIndex}`, {
+                    fetch(`/api/conversation/${currentDuckIndex}`, {
                         method: 'POST', body: JSON.stringify({ message }), headers: {
                             'Content-Type': 'application/json'
                         },

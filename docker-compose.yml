@@ -1,0 +1,33 @@
+services:
+    react:
+      restart: always
+      build:
+        context: .
+      ports:
+        - "127.0.0.1:3001:3000"
+      volumes:
+        - ./:/usr/src/app
+      command: yarn start
+      mem_limit: 2G
+  
+    express:
+      restart: always
+      build:
+        context: .
+      ports:
+        - "127.0.0.1:4242:4242"
+      volumes:
+        - ./:/usr/src/app
+      command: yarn start:express
+      mem_limit: 2G
+
+    nginx:
+      restart: always
+      image: nginx:latest
+      ports:
+        - "127.0.0.1:7001:80"
+      volumes:
+        - ./nginx:/etc/nginx/conf.d
+      links:
+        - express
+        - react
