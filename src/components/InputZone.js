@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -7,9 +7,12 @@ import SendIcon from '@material-ui/icons/Send';
 import './InputZone.css';
 
 export default function InputZone(props) {
-  const [value,setValue]=useState('');
-  
-  
+  const [value, setValue] = useState('');
+
+  const submit = () => {
+    props.handleSubmit(value)
+    setValue('')
+  }
   return (
     <Paper className="root">
       <InputBase
@@ -17,18 +20,16 @@ export default function InputZone(props) {
         placeholder="Enter Message..."
         inputProps={{ 'aria-label': 'Enter...' }}
         value={value}
-        onKeyPress={(event)=>{
+        onKeyPress={(event) => {
           if (event.key === 'Enter') {
-            props.handleSubmit(value)
-            setValue('')
+            submit()
           }
         }}
-        onChange={(event)=>setValue(event.target.value)}
+        onChange={(event) => setValue(event.target.value)}
       />
       <IconButton className="iconButton" aria-label="Search">
-        <SendIcon />
+        <SendIcon onClick={submit} />
       </IconButton>
     </Paper>
   );
 };
- 

@@ -25,6 +25,8 @@ function App() {
   if (loading) {
     return '';
   }
+
+  // PIMP THIS PART
   return (
     <div className="App">
       <div className="conversationListContainer">
