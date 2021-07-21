@@ -1,4 +1,4 @@
-const db = require('./utils/database');
+const db = require('../utils/database');
 
 const getRubberDuckResponse = (history) => {
     const answersBasic = ["can you elaborate?", "and why do you believe that is so?", "can you be more specific?", "what would be your guess?", "I need more details for this one"];
@@ -16,22 +16,10 @@ const getRubberDuckResponse = (history) => {
     return `Weird right ? the length some developpers would go to to obscure bugs of length 6 to the guy doing the assignement then not even have the decency to check the code. (ERROR_CODE=420)`;
 }
 
-const rubberduck = (index) => ({
+module.exports = (index) => ({
     dialogueEngine: (message) => {
         db.sendMessage(index, message)
         const resp = getRubberDuckResponse(db.getConversations().conversations[index]);
         setTimeout(() => db.receiveMessage(index, resp), 2000)
     }
 })
-
-const donald = (index) => ({
-    dialogueEngine: (message) => {
-        db.sendMessage(index, message)
-        db.receiveMessage(index, message)
-    }
-})
-
-// create the bot instances respectful of their indexes
-const bots = [rubberduck, donald].map((v, i) => v(i));
-
-module.exports = bots;

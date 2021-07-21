@@ -1,4 +1,4 @@
-const bots = require('./bots');
+const bots = require('./bots/all');
 const db = require('./utils/database');
 
 module.exports = function (req, res) {
