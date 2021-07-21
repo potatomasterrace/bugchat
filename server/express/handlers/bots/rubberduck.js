@@ -20,6 +20,10 @@ module.exports = (index) => ({
     dialogueEngine: (message) => {
         db.sendMessage(index, message)
         const resp = getRubberDuckResponse(db.getConversations().conversations[index]);
-        setTimeout(() => db.receiveMessage(index, resp), 2000)
+        db.setTyping(index,true)
+        setTimeout(() => {
+            db.receiveMessage(index, resp)
+            db.setTyping(index,false)
+        }, 2000)
     }
 })

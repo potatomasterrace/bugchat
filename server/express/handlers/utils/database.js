@@ -5,7 +5,12 @@ let friends = [
         is_typing: false,
     },
     {
-        name: 'Donald Duck',
+        name: 'Echo service',
+        image: '/og_duck.png',
+        is_typing: false,
+    },
+    {
+        name: 'Delayed echo service',
         image: '/og_duck.png',
         is_typing: false,
     },
@@ -22,8 +27,15 @@ let conversations = [
     [
         {
             'sent': false,
-            'message': "donalDuck in da House, I echo stuff."
+            'message': "I echo stuff immediately."
         }
+    ],
+    [
+        {
+            'sent': false,
+            'message': "I echo stuff after 5 sec."
+        }
+
     ]
 ]
 

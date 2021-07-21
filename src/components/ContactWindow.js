@@ -21,7 +21,7 @@ function ContactWindow() {
       <img style={{height:'100px'}} alt-text='' src={currentFriend.image}/>
 
     <span className="contactName">
-    {currentFriend.name}
+    {currentFriend.name} {currentFriend.is_typing ? ' is typing' : ''}
     </span>
     </div>
   );

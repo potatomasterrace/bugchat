@@ -6,7 +6,7 @@ const appSlice = createSlice(
         initialState: {
             dbVersion: 1,
             friends: [],
-            currentDuckIndex: -1,
+            currentDuckIndex: 0,
             loading: true,
         },
         reducers: {
