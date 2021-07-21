@@ -2,17 +2,17 @@ let friends = [
     {
         name: 'Dr. Rubberduck',
         image: '/ducky.jpg',
-        is_typing: false,
+        is_typing: 0,
     },
     {
         name: 'Echo service',
-        image: '/og_duck.png',
-        is_typing: false,
+        image: '/echo.jpg',
+        is_typing: 0,
     },
     {
         name: 'Delayed echo service',
-        image: '/og_duck.png',
-        is_typing: false,
+        image: '/ie.jpg',
+        is_typing: 0,
     },
 ]
 
@@ -74,7 +74,11 @@ const db = {
         conversations[conversationIndex].push({ message, sent: false })
     }),
     setTyping: dbIncrementWrapper((friendIndex, value) => {
-        friends[friendIndex].is_typing = value;
+        if(value){
+             friends[friendIndex].is_typing+=1
+        }else {
+            friends[friendIndex].is_typing-=1
+        }
     }),
 };
 
