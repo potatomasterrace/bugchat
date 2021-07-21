@@ -1,11 +1,7 @@
-const db= require( './database');
-const bots = require('./bots')
+const db= require( './utils/database');
+const longPoll = require('./utils/long_poll');
 
-module.exports =function (req, res) {
+module.exports = longPoll(30,(minimumVersion, req, res)=>{ 
     const idx = parseInt(req.params['idx']);
-    if(idx >=0 && idx<bots.length){
-        return res.json(db.conversations[idx]);
-    }
-    return res.json({error:`wrong idx ${idx}`})
-};
-  
+    res.json(db.getConversation(idx))
+});
