@@ -27,21 +27,39 @@ let conversations = [
     ]
 ]
 
+function getLastMessage(index) {
+    const messages = conversations[index];
+    return '' ? !messages.length : messages[messages.length - 1];
+}
+
+
 // dbVersion is a value incremented to signal that a change has been made 
-const dbVersion = 1;
+let dbVersion = 2;
+
+// wrapper to increment dbVersion after call
+const dbIncrementWrapper = (func) => {
+    dbVersion++;
+    return (...args)=>func(...args) 
+}
 const db = {
-    getFriends:()=>friends,
-    getConversations:()=>conversations,
-    getVersion: ()=> dbVersion,
-    present:()=>{friends,conversations,dbVersion},
-    sendMessage: (conversationIndex, message) => {
-        dbVersion++;
+    getFriends: () => friends,
+    getConversations: () => conversations,
+    getVersion: () => dbVersion,
+    presentAppState: () => ({
+        friends: friends.map((v, i) => {
+            v.last_message = getLastMessage(i);
+            return v;
+        }), dbVersion
+    }),
+    sendMessage: dbIncrementWrapper((conversationIndex, message) => {
         conversations[conversationIndex].push({ message, sent: true })
-    },
-    receiveMessage: (conversationIndex, message) => {
-        dbVersion++;
+    }),
+    receiveMessage: dbIncrementWrapper((conversationIndex, message) => {
         conversations[conversationIndex].push({ message, sent: false })
-    }
+    }),
+    setTyping: dbIncrementWrapper((friendIndex, value) => {
+        friends[friendIndex].is_typing = value;
+    }),
 };
 
 module.exports = db;

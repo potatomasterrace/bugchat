@@ -6,21 +6,22 @@ import CommunicationZone from './components/CommunicationZone';
 function App() {
   const loading = useSelector((state) => state.app.loading)
   const friends = useSelector((state) => state.app.friends)
+  const dbVersion = useSelector((state) => state.app.dbVersion)
   const intervalCounter = useSelector((state) => state.app.intervalCounter)
   const currentDuckIndex = useSelector((state) => state.app.currentDuckIndex)
   const dispatch = useDispatch();
-  useEffect(() =>{
-    fetch("http://localhost:4242/app_context")
-    .then(res => res.json())
-    .then(resp => {
-      dispatch({
-        type: 'app/finishLoading',
-        payload: { resp },
+  useEffect(() => {
+    fetch(`http://localhost:4242/app_context/${dbVersion}`)
+      .then(res => res.json())
+      .then(resp => {
+        dispatch({
+          type: 'app/finishLoading',
+          payload: { resp },
 
-      })
-    }, [])
-    
-  } , [intervalCounter])
+        })
+      }, [])
+
+  }, [intervalCounter])
 
   if (loading) {
     return '';
@@ -48,7 +49,7 @@ function App() {
         )}
       </div>
       <div className="mainContainer">
-        <CommunicationZone currentDuckIndex={currentDuckIndex}/>
+        <CommunicationZone currentDuckIndex={currentDuckIndex} />
       </div>
     </div>
   );

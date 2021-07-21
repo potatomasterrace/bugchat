@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './CommunicationZone.css';
 import InputZone from './InputZone';
 import ChatZone from './ChatZone';
@@ -11,7 +11,7 @@ const CommunicationZone = ({ currentDuckIndex }) => {
     const [loading, content, currentConversationIdx, intervalCounter] = useSelector(({ conversation: { loading, content, currentConversationIdx, intervalCounter } }) => [loading, content, currentConversationIdx, intervalCounter]);
 
     useEffect(() => {
-        if (currentDuckIndex != -1 && currentDuckIndex != currentConversationIdx) {
+        if (currentDuckIndex !== -1 && currentDuckIndex !== currentConversationIdx) {
             dispatch({
                 type: 'conversation/updateConversationIdx',
                 payload: { currentConversationIdx: currentDuckIndex },
@@ -20,7 +20,7 @@ const CommunicationZone = ({ currentDuckIndex }) => {
     }, [currentDuckIndex, currentConversationIdx])
     useEffect(() => {
         // if evertyhing is loaded except conversation load convesation
-        if (currentDuckIndex != -1 && currentDuckIndex == currentConversationIdx) {
+        if (currentDuckIndex !== -1 && currentDuckIndex == currentConversationIdx) {
             fetch(`http://localhost:4242/conversation/${currentDuckIndex}`)
                 .then(res => res.json())
                 .then(resp =>
@@ -31,7 +31,7 @@ const CommunicationZone = ({ currentDuckIndex }) => {
                     }))
         }
     }, [loading, currentConversationIdx, intervalCounter]);
-    if (currentConversationIdx == currentDuckIndex && currentConversationIdx != -1) {
+    if (currentConversationIdx == currentDuckIndex && currentConversationIdx !== -1) {
         return (
             <div className="chatHost innerShadow">
                 <ContactWindow />
