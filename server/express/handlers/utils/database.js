@@ -44,9 +44,9 @@ const dbIncrementWrapper = (func) => (...args) => {
 
 const db = {
     getFriends: () => friends,
-    getConversation: (idx) => ({
-        content: conversations[idx],
-        dbVersion: dbVersion,
+    getConversations: () => ({
+        conversations,
+        dbVersion,
     }),
     getVersion: () => (dbVersion),
     presentAppState: () => ({

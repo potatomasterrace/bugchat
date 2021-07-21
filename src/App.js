@@ -7,7 +7,6 @@ function App() {
   const loading = useSelector((state) => state.app.loading)
   const friends = useSelector((state) => state.app.friends)
   const dbVersion = useSelector((state) => state.app.dbVersion)
-  const intervalCounter = useSelector((state) => state.app.intervalCounter)
   const currentDuckIndex = useSelector((state) => state.app.currentDuckIndex)
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,7 +20,7 @@ function App() {
         })
       }, [])
 
-  }, [intervalCounter])
+  }, [dbVersion])
 
   if (loading) {
     return '';

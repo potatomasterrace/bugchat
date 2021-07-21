@@ -8,34 +8,29 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const CommunicationZone = ({ currentDuckIndex }) => {
     const dispatch = useDispatch();
-    const [loading, content, currentConversationIdx, intervalCounter] = useSelector(({ conversation: { loading, content, currentConversationIdx, intervalCounter } }) => [loading, content, currentConversationIdx, intervalCounter]);
-
-    useEffect(() => {
-        if (currentDuckIndex !== -1 && currentDuckIndex !== currentConversationIdx) {
-            dispatch({
-                type: 'conversation/updateConversationIdx',
-                payload: { currentConversationIdx: currentDuckIndex },
-            })
-        }
-    }, [currentDuckIndex, currentConversationIdx])
+    const [loading, conversations, dbVersion] = useSelector(({ conversation: { loading, conversations, dbVersion } }) => [loading, conversations, dbVersion]);
     useEffect(() => {
         // if evertyhing is loaded except conversation load convesation
-        if (currentDuckIndex !== -1 && currentDuckIndex == currentConversationIdx) {
-            fetch(`http://localhost:4242/conversation/${currentDuckIndex}`)
+
+            fetch(`http://localhost:4242/conversation/${dbVersion}`)
                 .then(res => res.json())
                 .then(resp =>
                     dispatch({
                         type: 'conversation/finishLoading',
                         payload: { resp },
 
+                    })).catch(e => dispatch({
+                        type: 'conversation/finishLoading',
+                        payload: { resp: { dbVersion: 1 } },
                     }))
-        }
-    }, [loading, currentConversationIdx, intervalCounter]);
-    if (currentConversationIdx == currentDuckIndex && currentConversationIdx !== -1) {
+
+    }, [loading,dbVersion]);
+    
+    if (currentDuckIndex !== -1 && conversations[currentDuckIndex]) {
         return (
             <div className="chatHost innerShadow">
                 <ContactWindow />
-                <ChatZone history={content} />
+                <ChatZone history={conversations[currentDuckIndex]} />
                 <InputZone handleSubmit={(message) => {
                     fetch(`http://localhost:4242/conversation/${currentDuckIndex}`, {
                         method: 'POST', body: JSON.stringify({ message }), headers: {

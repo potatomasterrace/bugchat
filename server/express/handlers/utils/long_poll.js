@@ -18,6 +18,9 @@ module.exports = (pollingInterval, callBack) => {
         });
         // not blocking the event loop
         while (!shouldUpdate() && !connectionClosed) {
+            if(req.url.startsWith('/conversa')){
+                console.log(req.url, db.getVersion(),minimumVersion,!shouldUpdate())
+            }
             await timeout(pollingInterval);
         }
         if (!connectionClosed) {

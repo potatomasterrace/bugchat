@@ -6,6 +6,6 @@ const asyncHandler = require('express-async-handler')
 module.exports = function (app, opts) {
   // Setup routes, middleware, and handlers
   app.get('/app_context/:minimum_version', asyncHandler(app_context));
-  app.get('/conversation/:idx/:minimum_version', asyncHandler(bot_read_endpoint));
+  app.get('/conversation/:minimum_version', asyncHandler(bot_read_endpoint));
   app.post('/conversation/:idx', bot_endpoint);
 };
