@@ -9,7 +9,7 @@ export default function Snippet(props) {
 
   return (
     <div>
-      <Paper className="snippetBox"
+      <Paper className={`${props.lighten ? 'lighten' : ''} snippetBox`}
       style={props.isSent ? {float: 'left', backgroundColor: '#6accc3'}: {float : 'right'}}>
         <Typography component="p">
           {props.item}

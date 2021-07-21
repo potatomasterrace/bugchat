@@ -47,17 +47,9 @@
   margin-left: auto;
   margin-right: 0;
   align-items: center;
+  height: 100%;
 }
 
-.conversationListContainer {
-  max-width: 20%;
-  margin-left: 0;
-  margin-top: 20vh;
-  margin-right: auto;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
 
 .App-header {
   background-color: #282c34;
@@ -85,4 +77,14 @@
 
 .grid{
   padding-top: 10px;
+}
+
+
+.conversationListContainer {
+  background: white;
+}
+
+.contactCard{
+  width: 100%;
+  margin-top: 10px;
 }

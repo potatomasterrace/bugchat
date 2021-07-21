@@ -11,13 +11,21 @@ export default function ChatZone(props) {
       <div className="chatWrap">
         {
           history.map(({ message, sent }, index) =>
-
             <Snippet
               key={index}
               index={index}
               item={message}
               isSent={!sent} />
           )}
+        {
+          props.isTyping ?
+          <Snippet
+          item={`${props.duckName} is typing`}
+          isSent={true} 
+          lighten={true}
+          /> : 
+          ''
+        }
       </div>
     </div>
   );

@@ -14,6 +14,11 @@ let friends = [
         image: '/ie.jpg',
         is_typing: 0,
     },
+    {
+        name: '2 echo service',
+        image: '/ie.jpg',
+        is_typing: 0,
+    },
 ]
 
 
@@ -36,6 +41,16 @@ let conversations = [
             'message': "I echo stuff after 5 sec."
         }
 
+    ],
+    [
+        {
+            'sent': false,
+            'message': "I will repeat ounce after 2 sec."
+        },
+        {
+            'sent': false,
+            'message': "Then repeat myself 2 sec later"
+        }
     ]
 ]
 
@@ -74,10 +89,10 @@ const db = {
         conversations[conversationIndex].push({ message, sent: false })
     }),
     setTyping: dbIncrementWrapper((friendIndex, value) => {
-        if(value){
-             friends[friendIndex].is_typing+=1
-        }else {
-            friends[friendIndex].is_typing-=1
+        if (value) {
+            friends[friendIndex].is_typing += 1
+        } else {
+            friends[friendIndex].is_typing -= 1
         }
     }),
 };
