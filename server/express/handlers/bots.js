@@ -19,10 +19,8 @@ const getRubberDuckResponse = (history) => {
 const rubberduck = (index) => ({
     dialogueEngine: (message) => {
         db.sendMessage(index, message)
-        const resp = getRubberDuckResponse(db.conversations[index]);
-        if (resp) {
-            setTimeout(() => db.receiveMessage(index, resp), 1000)
-        }
+        const resp = getRubberDuckResponse(db.getConversations().conversations[index]);
+        setTimeout(() => db.receiveMessage(index, resp), 2000)
     }
 })
 
@@ -34,6 +32,6 @@ const donald = (index) => ({
 })
 
 // create the bot instances respectful of their indexes
-const bots = [rubberduck, donald].map((v,i)=>v(i));
+const bots = [rubberduck, donald].map((v, i) => v(i));
 
 module.exports = bots;
