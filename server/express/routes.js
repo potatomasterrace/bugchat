@@ -8,7 +8,7 @@ module.exports = function (app, opts) {
   // Setup routes, middleware, and handlers
   app.get('/', simple);
   app.get('/configured', configured(opts));
-  app.get('/app_context', app_context);
+  app.get('/app_context/:minimum_version', app_context);
   app.get('/conversation/:idx', bot_read_endpoint);
   app.post('/conversation/:idx', bot_endpoint);
 };

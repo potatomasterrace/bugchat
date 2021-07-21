@@ -33,7 +33,7 @@ const db = {
     getFriends:()=>friends,
     getConversations:()=>conversations,
     getVersion: ()=> dbVersion,
-    present:()=>{friends,conversations,version:dbVersion},
+    present:()=>{friends,conversations,dbVersion},
     sendMessage: (conversationIndex, message) => {
         dbVersion++;
         conversations[conversationIndex].push({ message, sent: true })
