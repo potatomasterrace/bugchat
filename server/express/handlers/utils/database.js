@@ -36,15 +36,19 @@ function getLastMessage(index) {
 // dbVersion is a value incremented to signal that a change has been made 
 let dbVersion = 2;
 
-// wrapper to increment dbVersion after call
-const dbIncrementWrapper = (func) => {
+// wrapper to increment dbVersion after change
+const dbIncrementWrapper = (func) => (...args) => {
+    func(...args);
     dbVersion++;
-    return (...args)=>func(...args) 
 }
+
 const db = {
     getFriends: () => friends,
-    getConversation: (idx) => conversations[idx],
-    getVersion: () => dbVersion,
+    getConversation: (idx) => ({
+        content: conversations[idx],
+        dbVersion: dbVersion,
+    }),
+    getVersion: () => (dbVersion),
     presentAppState: () => ({
         friends: friends.map((v, i) => {
             v.last_message = getLastMessage(i);
