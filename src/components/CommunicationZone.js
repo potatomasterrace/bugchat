@@ -24,7 +24,7 @@ const CommunicationZone = ({ currentDuckIndex, isTyping,duckName }) => {
                     payload: { resp: { dbVersion: 1 } },
                 }))
 
-    }, [loading, dbVersion]);
+    }, [dbVersion]);
 
     if (currentDuckIndex !== -1 && conversations[currentDuckIndex]) {
         return (
