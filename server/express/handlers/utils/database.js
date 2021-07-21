@@ -16,7 +16,7 @@ let friends = [
     },
     {
         name: '2 echo service',
-        image: '/ie.jpg',
+        image: '/shotgun.webp',
         is_typing: 0,
     },
 ]
